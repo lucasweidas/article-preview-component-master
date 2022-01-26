@@ -80,6 +80,7 @@ p {
     display: flex;
     align-items: center;
     gap: 1rem;
+    position: relative;
 }
 
 .person_img {
@@ -101,18 +102,13 @@ p {
     font-weight: 500;
 }
 
-/* Share Container */
-.share-c {
-    position: relative;
-    margin-left: auto;
-}
-
 .btn_share {
     cursor: pointer;
     border: none;
     background-color: var(--clr-light-blue);
-    padding: 0.5rem;
     border-radius: 50%;
+    padding: 0.5rem;
+    margin-left: auto;
     transition: background-color 300ms ease;
 }
 
@@ -124,15 +120,13 @@ p {
     fill: #fff;
 }
 
-/* Share Links Container */
-.share-links-c {
-    min-width: 100px;
-    width: 95vw;
+/* Share Container */
+.share-c {
+    width: calc(100% + 4rem);
     max-width: 330px;
-    width: clamp(100px, 95vw, 330px);
     height: 75px;
     position: absolute;
-    top: -35px;
+    bottom: -1.25rem;
     right: -2rem;
     display: flex;
     justify-content: flex-start;
@@ -146,13 +140,13 @@ p {
     padding-inline: 2rem;
 }
 
-.share-c.show::after,
-.share-links-c.show {
+.person-c.show::after,
+.share-c.show {
     visibility: visible;
     opacity: 1;
 }
 
-.share-links-c > p {
+.share-c > p {
     color: var(--clr-grayish-blue);
     text-transform: uppercase;
     letter-spacing: 0.25em;
@@ -186,38 +180,40 @@ p {
 /***********************************************/
 /* Media Queries */
 @media (max-width: 499px) {
+    .content-c {
+        overflow: hidden;
+    }
+
     .btn_share.click {
         position: absolute;
         right: 0;
-        bottom: -17px;
-        z-index: 10;
+        bottom: auto;
+        z-index: 1;
     }
 }
 
 @media (min-width: 500px) {
-    .share-links-c {
-        width: 250px;
-        height: 55px;
-        top: -85px;
-        left: 50%;
-        transform: translateX(-50%);
-        justify-content: center;
-        border-radius: 10px;
-        padding: 0;
-    }
-
-    .share-c::after {
+    .person-c::after {
         content: '';
         position: absolute;
         border-style: solid;
         border-color: var(--clr-dark-blue) transparent;
         border-width: 15px 15px 0;
-        top: -30px;
-        left: 50%;
-        transform: translateX(-50%);
+        top: -27px;
+        right: 0;
         visibility: hidden;
         opacity: 0;
-        transition: opacity 400ms ease;
+        transition: opacity 350ms ease;
+    }
+
+    .share-c {
+        width: 250px;
+        height: 55px;
+        top: -82px;
+        right: -110px;
+        justify-content: center;
+        border-radius: 10px;
+        padding: 0;
     }
 }
 
@@ -240,9 +236,7 @@ p {
 }
 
 @media (min-width: 730px) and (max-width: 900px) {
-    .share-links-c {
+    .share-c {
         right: -30px;
-        left: auto;
-        transform: none;
     }
 }
